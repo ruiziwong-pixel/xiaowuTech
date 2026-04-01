@@ -43,6 +43,12 @@ export type AdIssueType = '高ACOS' | '有曝光无点击' | '高点击不出单
 /** 库存状态 */
 export type InventoryStatus = '断货预警' | '高库存低动销' | '高库存负利润' | '健康库存' | '清货候选' | '禁补候选';
 
+/** 新品检查点达标状态 */
+export type CheckpointStatus = '达标' | '未达标' | '待检查';
+
+/** 稳定品等级趋势 */
+export type GradeTrend = '升级' | '降级' | '持平';
+
 // ========== 1. ASIN 主表 ==========
 export interface AsinMaster {
   asin: string;
@@ -178,4 +184,35 @@ export interface OverviewSummary {
   total_asin_count: number;
   weekly_issues: string[];
   suggested_actions: string[];
+}
+
+/** 新品检查点评估记录 */
+export interface NewProductCheckpointEval {
+  asin: string;
+  checkpoint: NewProductCheckpoint;
+  eval_date: string;
+  status: CheckpointStatus;
+  sales_target: number;
+  sales_actual: number;
+  sessions_target: number;
+  sessions_actual: number;
+  cvr_target: number;
+  cvr_actual: number;
+  rating_target: number;
+  rating_actual: number;
+  review_count: number;
+  remark: string;
+}
+
+/** 稳定品等级变动记录 */
+export interface StableGradeHistory {
+  asin: string;
+  date: string;
+  grade: StableGrade;
+  prev_grade: StableGrade | null;
+  trend: GradeTrend;
+  sales_30d: number;
+  profit_margin_30d: number;
+  acos_30d: number;
+  remark: string;
 }

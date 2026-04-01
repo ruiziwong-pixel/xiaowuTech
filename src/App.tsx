@@ -5,6 +5,8 @@ import { MainLayout } from './layouts/MainLayout';
 import OverviewPage from './pages/overview';
 import StoreHealthPage from './pages/store-health';
 import AsinLifecyclePage from './pages/asin-lifecycle';
+import NewProductPage from './pages/asin-lifecycle/NewProductPage';
+import StableManagementPage from './pages/asin-lifecycle/StableManagementPage';
 import AdDiagnosisPage from './pages/ad-diagnosis';
 import InventoryHealthPage from './pages/inventory-health';
 import TodoPage from './pages/todo';
@@ -27,6 +29,8 @@ function App() {
             <Route path="/" element={<OverviewPage />} />
             <Route path="/store-health" element={<StoreHealthPage />} />
             <Route path="/asin-lifecycle" element={<AsinLifecyclePage />} />
+            <Route path="/asin-lifecycle/new-product" element={<NewProductPage />} />
+            <Route path="/asin-lifecycle/stable-management" element={<StableManagementPage />} />
             <Route path="/ad-diagnosis" element={<AdDiagnosisPage />} />
             <Route path="/inventory-health" element={<InventoryHealthPage />} />
             <Route path="/todo" element={<TodoPage />} />

@@ -5,3 +5,5 @@
 export { mockAsinMaster } from './asin-master';
 export { mockDailyMetrics, getRecentMetrics, getLatestMetrics } from './daily-metrics';
 export { mockTasks } from './tasks';
+export { mockNewProductCheckpoints } from './new-product-checkpoints';
+export { mockStableGradeHistory } from './stable-grade-history';

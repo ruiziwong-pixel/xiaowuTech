@@ -10,6 +10,8 @@ import {
   FundOutlined,
   DatabaseOutlined,
   CheckSquareOutlined,
+  RocketOutlined,
+  StarOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
@@ -18,7 +20,16 @@ const { Header, Sider, Content } = Layout;
 const menuItems = [
   { key: '/', icon: <DashboardOutlined />, label: '经营总览' },
   { key: '/store-health', icon: <ShopOutlined />, label: '店铺健康度' },
-  { key: '/asin-lifecycle', icon: <TagsOutlined />, label: 'ASIN 生命周期' },
+  {
+    key: '/asin-lifecycle',
+    icon: <TagsOutlined />,
+    label: 'ASIN 生命周期',
+    children: [
+      { key: '/asin-lifecycle', label: '总览' },
+      { key: '/asin-lifecycle/new-product', icon: <RocketOutlined />, label: '新品识别' },
+      { key: '/asin-lifecycle/stable-management', icon: <StarOutlined />, label: '稳定品管理' },
+    ],
+  },
   { key: '/ad-diagnosis', icon: <FundOutlined />, label: '广告诊断' },
   { key: '/inventory-health', icon: <DatabaseOutlined />, label: '库存健康' },
   { key: '/todo', icon: <CheckSquareOutlined />, label: '个人待办' },
@@ -29,6 +40,9 @@ export function MainLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const { token } = theme.useToken();
+
+  // 自动展开包含当前路径的子菜单
+  const defaultOpenKeys = location.pathname.startsWith('/asin-lifecycle') ? ['/asin-lifecycle'] : [];
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -55,6 +69,7 @@ export function MainLayout() {
         <Menu
           mode="inline"
           selectedKeys={[location.pathname]}
+          defaultOpenKeys={defaultOpenKeys}
           items={menuItems}
           onClick={({ key }) => navigate(key)}
           style={{ borderRight: 0 }}

@@ -3,7 +3,7 @@
  * 用于展示生命周期、等级、风险、补货等各类标签
  */
 import { Tag } from 'antd';
-import type { LifecycleStage, StableGrade, WarningLevel, ReplenishTag, TaskStatus, StoreHealthTag, TaskPriority } from '../types';
+import type { LifecycleStage, StableGrade, WarningLevel, ReplenishTag, TaskStatus, StoreHealthTag, TaskPriority, CheckpointStatus, GradeTrend } from '../types';
 
 const lifecycleColors: Record<LifecycleStage, string> = {
   '新品期': 'blue',
@@ -88,4 +88,25 @@ export function HealthTag({ tag }: { tag: StoreHealthTag }) {
 
 export function PriorityTag({ priority }: { priority: TaskPriority }) {
   return <Tag color={priorityColors[priority]}>{priority}</Tag>;
+}
+
+const checkpointStatusColors: Record<CheckpointStatus, string> = {
+  '达标': 'success',
+  '未达标': 'error',
+  '待检查': 'processing',
+};
+
+export function CheckpointStatusTag({ status }: { status: CheckpointStatus }) {
+  return <Tag color={checkpointStatusColors[status]}>{status}</Tag>;
+}
+
+const gradeTrendConfig: Record<GradeTrend, { color: string; icon: string }> = {
+  '升级': { color: 'green', icon: '↑' },
+  '降级': { color: 'red', icon: '↓' },
+  '持平': { color: 'default', icon: '→' },
+};
+
+export function GradeTrendTag({ trend }: { trend: GradeTrend }) {
+  const config = gradeTrendConfig[trend];
+  return <Tag color={config.color}>{config.icon} {trend}</Tag>;
 }
