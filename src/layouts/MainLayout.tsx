@@ -21,7 +21,7 @@ const menuItems = [
   { key: '/', icon: <DashboardOutlined />, label: '经营总览' },
   { key: '/store-health', icon: <ShopOutlined />, label: '店铺健康度' },
   {
-    key: '/asin-lifecycle',
+    key: 'asin-lifecycle-menu',
     icon: <TagsOutlined />,
     label: 'ASIN 生命周期',
     children: [
@@ -42,7 +42,7 @@ export function MainLayout() {
   const { token } = theme.useToken();
 
   // 自动展开包含当前路径的子菜单
-  const defaultOpenKeys = location.pathname.startsWith('/asin-lifecycle') ? ['/asin-lifecycle'] : [];
+  const defaultOpenKeys = location.pathname.startsWith('/asin-lifecycle') ? ['asin-lifecycle-menu'] : [];
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
